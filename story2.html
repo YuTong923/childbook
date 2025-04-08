@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安的學習冒險</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: #f9f7f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #2e4053;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            margin-left: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2e4053;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: #2e4053;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f9f7f4 0%, #e6f7ff 100%);
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #2e4053;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #5d6d7e;
+        }
+
+        /* Story Sections */
+        .story-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .story-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .story-image {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .story-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Alternate story layout */
+        .story-section:nth-child(even) {
+            flex-direction: row-reverse;
+            background-color: #f0f8ff;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #e74c3c;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e4053;
+            color: #ffffff;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-right: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #e74c3c;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #e74c3c;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #e74c3c;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: #ffffff;
+                height: 0;
+                overflow: hidden;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transition: all 0.5s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                height: auto;
+                padding: 2rem 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .story-section {
+                flex-direction: column;
+            }
+
+            .story-section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .story-content, .story-image {
+                padding: 1.5rem;
+            }
+
+            .footer-section {
+                flex: 100%;
+                margin-right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
+
+        /* Burger Animation */
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">📚 <span>安的學習冒險</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#story">故事</a></li>
+                    <li><a href="#about">關於</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>安的學習冒險</h1>
+            <p>跟著安一起探索學習的奇妙旅程，發現成長的喜悅與挑戰。這是一個關於好奇心、毅力與友誼的故事。</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story">
+        <div class="container">
+            <div class="section-title">
+                <h2>故事章節</h2>
+            </div>
+
+            <!-- Scene 1 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第一幕：新的一天</h3>
+                    <p>一個名叫安的年輕女孩，穿著校服和眼鏡，直髮紮成馬尾，臉上帶著燦爛的笑容，擁有聰明好奇的性格。安在早晨醒來，快樂地伸了個懶腰，準備迎接新的一天。她穿上校服，準備出門。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image1.jpg" alt="安在早晨醒來，準備迎接新的一天">
+                </div>
+            </div>
+
+            <!-- Scene 2 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第二幕：學習的冒險</h3>
+                    <p>安到達學校，發現今天將學習新事物。她感到好奇和興奮。老師告訴她，學習就像一場冒險——有時具有挑戰性，但充滿驚喜。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image2.jpg" alt="安在學校感到好奇和興奮">
+                </div>
+            </div>
+
+            <!-- Scene 3 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第三幕：數學的挑戰</h3>
+                    <p>安在解決數學問題時遇到困難，感到有些沮喪。她開始懷疑自己是否能解決這個問題。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image3.jpg" alt="安在數學問題上遇到困難">
+                </div>
+            </div>
+
+            <!-- Scene 4 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第四幕：尋求幫助</h3>
+                    <p>安決定向老師和同學尋求幫助。老師耐心地解釋數學問題，而她的朋友們提供了有用的提示，讓一切變得更清晰。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image4.jpg" alt="安向老師和同學尋求幫助">
+                </div>
+            </div>
+
+            <!-- Scene 5 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第五幕：藝術課堂</h3>
+                    <p>在藝術課上，安第一次嘗試繪畫。雖然她的畫作不完美，但她並不氣餒，決定繼續嘗試。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image5.jpg" alt="安在藝術課上嘗試繪畫">
+                </div>
+            </div>
+
+            <!-- Scene 6 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第六幕：從錯誤中學習</h3>
+                    <p>在做作業時，安犯了一些小錯誤。她感到有點沮喪，但提醒自己錯誤是學習的一部分，她選擇從錯誤中學習。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image6.jpg" alt="安從錯誤中學習">
+                </div>
+            </div>
+
+            <!-- Scene 7 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第七幕：分享成就</h3>
+                    <p>安完成了數學作業，並畫了一幅美麗的畫。她與老師和同學分享她的作品，他們讚揚她的努力。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image7.jpg" alt="安分享她的作品">
+                </div>
+            </div>
+
+            <!-- Scene 8 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第八幕：運動會的挑戰</h3>
+                    <p>安參加運動會上的比賽，但儘管她努力了，她仍然落後於其他學生。她感到有些沮喪。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image8.jpg" alt="安在運動會上面臨挑戰">
+                </div>
+            </div>
+
+            <!-- Scene 9 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第九幕：堅持不懈</h3>
+                    <p>即使在挫折之後，安決定每天堅持練習跑步。她相信通過努力，她最終會進步。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image9.jpg" alt="安堅持練習跑步">
+                </div>
+            </div>
+
+            <!-- Scene 10 -->
+            <div class="story-section fade-in">
+                <div class="story-content">
+                    <h3>第十幕：反思與期待</h3>
+                    <p>在一天結束時，安走回家，反思她學到的一切。她感謝今天的經歷，並期待明天的冒險。</p>
+                </div>
+                <div class="story-image">
+                    <img src="image10.jpg" alt="安反思她的一天">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="background-color: #f0f8ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>關於本故事</h2>
+            </div>
+            <div class="about-content">
+                <p>《安的學習冒險》是一個關於成長、學習和毅力的故事。通過安的經歷，我們看到學習不僅是獲取知識，更是一個發現自我、克服困難的過程。</p>
+                <p>這個故事鼓勵孩子們保持好奇心，不怕失敗，勇於嘗試，並從生活的每一個時刻中學習。我們希望這個故事能夠啟發孩子們熱愛學習，並在成長的道路上保持樂觀和堅毅。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>聯絡我們</h2>
+            </div>
+            <div class="contact-content">
+                <p>如果您對故事有任何疑問或建議，請隨時與我們聯繫。我們很樂意聽取您的意見，並不斷改進我們的故事內容。</p>
+                <form id="contact-form">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="name" style="display: block; margin-bottom: 0.5rem;">姓名</label>
+                        <input type="text" id="name" name="name" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="email" style="display: block; margin-bottom: 0.5rem;">電子郵件</label>
+                        <input type="email" id="email" name="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="message" style="display: block; margin-bottom: 0.5rem;">訊息</label>
+                        <textarea id="message" name="message" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                    </div>
+                    <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 500;">發送訊息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>安的學習冒險</h3>
+                    <p>一個關於成長、學習和毅力的故事，鼓勵孩子們保持好奇心，勇於嘗試。</p>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>YT</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>快速連結</h3>
+                    <a href="#home">首頁</a>
+                    <a href="#story">故事</a>
+                    <a href="#about">關於</a>
+                    <a href="#contact">聯絡我們</a>
+                </div>
+                <div class="footer-section">
+                    <h3>聯絡資訊</h3>
+                    <p>電子郵件: info@annsadventure.com</p>
+                    <p>電話: 02-1234-5678</p>
+                    <p>地址: 台北市信義區故事街123號</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 安的學習冒險. 版權所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+            // Toggle Nav
+            nav.classList.toggle('active');
+            
+            // Animate Links
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `fadeIn 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Burger Animation
+            burger.classList.toggle('toggle');
+        });
+
+        // Smooth Scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    burger.classList.remove('toggle');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeIn = () => {
+            fadeElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initial check for elements in view
+        fadeIn();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeIn);
+
+        // Form submission handling
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (name && email && message) {
+                // In a real application, you would send this data to a server
+                alert('謝謝您的訊息！我們會盡快回覆您。');
+                contactForm.reset();
+            } else {
+                alert('請填寫所有欄位。');
+            }
+        });
+    </script>
+</body>
+</html>
